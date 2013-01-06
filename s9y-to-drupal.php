@@ -4,7 +4,7 @@
  *
  * The process is done in three steps:
  *     1). pull out all Serendipity comments from database.
- *     2). get blog entries from a S9Y RSS feed.
+ *     2). get blog entries from a Serendipity RSS feed.
  *     3). for each Serendipity blog entry:
  *         3.1). store it in Drupal as a node.
  *         3.2). store category and tags as Drupal tags.
@@ -89,7 +89,7 @@ if (! is_file($fileConfig = __DIR__ . '/config.ini')) {
 $ini = new Ini();
 $config = $ini->fromFile($fileConfig);
 
-// Remote trailing slash from Drupal root directory.
+// Remove trailing slash from Drupal root directory.
 if (substr($config['drupal']['rootDir'], -1) == '/') {
     $drupalRootDir = substr($config['drupal']['rootDir'], 0, -1);
 } else {
@@ -170,7 +170,7 @@ $emptySummary = isset($config['drupal']['emptySummary']) ? (boolean) $config['dr
 
 
 /**
- * Step 2: get blog entries from a S9Y RSS feed.
+ * Step 2: get blog entries from a Serendipity RSS feed.
  */
 $s9yBaseUrl = $config['s9y']['baseUrl'] . ((substr($config['s9y']['baseUrl'], -1) == '/') ? '' : '/');
 $s9yRssUrl  = $s9yBaseUrl . 'rss.php?version=2.0' . (!empty($config['debug']) ? '' : '&all=1');
