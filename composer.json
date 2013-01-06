@@ -1,0 +1,17 @@
+{
+    "name": "deminy/s9y-to-drupal",
+    "description": "Import Serendipity blog posts along with comments into Drupal.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name":     "Demin Yin",
+            "email":    "deminy@deminy.net",
+            "homepage": "http://www.deminy.net"
+        }
+    ],
+    "require": {
+        "zendframework/zend-config": "2.0.*",
+        "zendframework/zend-feed":   "2.0.*",
+        "zendframework/zend-http":   "2.0.*"
+    }
+}

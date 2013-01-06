@@ -1,0 +1,105 @@
+# If debug mode is on, the script will load at most latest 15 entries only.
+# By default debug mode is turned off.
+# To turn debug mode on, uncomment following line to set it to "true" (without quotes).
+# debug = true
+
+
+# Serendipity settings
+[s9y]
+# Base URL of the Serendipityblog site.
+# It doesn't matter if there is a trailing slash or not.
+# Please make sure not to include "/index.php" at the end of the URL.
+baseUrl = "http://example.com/blog"
+
+# Pattern to extra entry ID from blog URL. The text that matches the first captured parenthesized
+# subpattern is the entry ID.
+#
+# For example, suppose blog URL is "http://example.com/blog/232-y.html" where 233 is the entry ID.
+# In this case, the pattern could be "#/(\d+)\-y\.html$#".
+patternEntryId = "#/(\d+)\.html$#"
+
+# Ignore pingbacks and trackbacks or not when importing comments.
+# By default the script ignores pingbacks and trackbacks.
+# To import pingbacks and trackbacks as normal comments, uncomment following line to set it to
+# "false" (without quotes).
+# ignoreLinkbacks = false
+
+# Database settings for connecting to Serendipity database.
+# Used only for exporting comments from Serendipity.
+db.host     = "localhost"
+db.port     = "3306"
+db.username = "s9yDbUsername"
+db.password = "s9yDbPassword"
+db.database = "s9yDbName"
+db.driver   = "mysql"
+db.prefix   = "serendipity_"
+# Data stored in Drupal are UTF-8 encoded; however, data stored in Serendipity may not be UTF-8
+# encoded. If this is true and you see garbled characters returned from Serendipity database, try
+# to change "db.charset" with different charsets. If still not working, you need to use
+# iconv/mbstring functions to convert strings with a different character encoding manually.
+# db.charset  = "latin1"
+
+
+# Drupal settings
+[drupal]
+# Root directory of your Drupal installation.
+rootDir = "/path/to/your/drupal/7/installation"
+
+# Domain of your Drupal 7 website
+domain = "your.drupal.site.com"
+
+# User ID of the author.
+#
+# If set, the user is considered as author of all imported blogs.
+# If not set, the script will try to find the author based on author name; if nobody found for a
+# blog, the blog is considered as created by the default administrator (whose user ID is 1).
+# userId = 1
+
+# Machine name of the content type for imported blogs. If you have module "blog" installed, by
+# default machine name of the blogs should be "blog".
+type = "blog"
+
+# Text format used for imported blogs.
+#
+# I'd suggest you to create a new text format named "s9y", without any filters enabled. By doing
+# that, you only need to make some minimum updates on the blogs exported from Serendipity RSS feed
+# to have them displayed properly on your Drupal site.
+# 
+# Security warning: since this text format suggested above doesn't have any filter enabled, leaving
+# potential security threaten in the system. This format should only be used for imported blogs.
+# Once the import is done, this text format should not be used for any new entries (nodes,
+# comments, etc) to avoid any possobile security issue.
+#
+# If not set, the script will use text format "filtered_html" to filter imported blogs.
+format = "s9y"
+
+# Should field "summary" left empty or populated with same content of the blog.
+#
+# By default the script leaves field "summary" empty. To populate field "summary" with same content
+# of the blog, just uncomment next line.
+# emptySummary = false
+
+# Store category of each blog as tag of a node in Drupal.
+#
+# You need to manually create a new vocabulary, then add a "term reference" field to the conent
+# type of "blog" (the content type is defined previously by configuration "druapl.type"), and use
+# that vocabulary for the "term reference" field added.
+#
+# Machine name of field "term reference" should be defined under configuration "category.field".
+# Machine name of the vocabulary should be defined under configuration "category.vocabulary".
+category.field      = "field_category"
+category.vocabulary = "category"
+
+# Store tags of each blog in Drupal. Please note that following options are for storing tags
+# defined by Serendipity event plugins, but not Serendipity categories. Serendipity categories are
+# stored as tags using another vocabulary (check configuriation "category.vocabulary" for more
+# information).
+#
+# Please make sure module "taxonomy" is enabled, and then add a "term reference" field to the
+# conent type of "blog" (the content type is defined previously by configuration "druapl.type"),
+# and use the default vocabulary "tags" for the "term reference" field added.
+#
+# Machine name of field "term reference" should be defined under configuration "tags.field".
+# Machine name of the vocabulary should be defined under configuration "tags.vocabulary".
+tags.field      = "field_tags"
+tags.vocabulary = "tags"
