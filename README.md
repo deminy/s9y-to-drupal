@@ -25,10 +25,10 @@ file is located:
 ```
 curl -s http://getcomposer.org/installer | php && ./composer.phar install
 ```
-## 2. Create the configuration file "*config.ini*"
+## 2. Create configuration file
 
-You can create the file by copying directly from sample file "*config.ini.dist*", then set configuration options
-following instructions in the sample file.
+You can create the configuration file "config.ini" by copying directly from sample file "*config.ini.dist*", then set
+configuration options following instructions in the sample file.
 
 ## 3. Set up your Drupal installation
 
@@ -107,3 +107,7 @@ Details of these post-import tasks are not covered by the script.
   Secondly, there are many event plugins that could be used in Serendipity for rendering blog contents, so blog data
   stored in database may not be well formed XHTML data; however, blog contents in RSS feed usually are well formed, and
   whatever we get from the RSS feed has been rendered/cleaned properly.
+
+# License
+
+MIT license.

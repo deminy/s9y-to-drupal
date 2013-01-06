@@ -12,7 +12,9 @@
  *
  * For known lmitations and possible issues, please check file 'README.md'.
  *
- * @author Demin Yin <deminy@deminy.net>
+ * @author    Demin Yin <deminy@deminy.net>
+ * @copyright Copyright (c) 2013 Demin Yin <deminy@deminy.net>
+ * @license   MIT
  */
 
 if (is_dir($vendor = __DIR__ . '/vendor')) {
