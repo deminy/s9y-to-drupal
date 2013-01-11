@@ -40,8 +40,8 @@ use Zend\Config\Reader\Ini, Zend\Feed\Reader\Reader, Zend\Http\Client;
 function getDrupalTermId($name, $vocabulary) {
     static $cachedTerms = array();
 
-    if (! isset($cachedTerms[$vocabulary][$term])) {
-        if (! array_key_exists($vocabulary, $cachedTerms)) {
+    if (!isset($cachedTerms[$vocabulary][$term])) {
+        if (!array_key_exists($vocabulary, $cachedTerms)) {
                 $cachedTerms[$vocabulary] = array();
         }
         $objVocabulary = taxonomy_vocabulary_machine_name_load($vocabulary);
@@ -81,7 +81,7 @@ function getDrupalTermId($name, $vocabulary) {
 }
 
 
-if (! is_file($fileConfig = __DIR__ . '/config.ini')) {
+if (!is_file($fileConfig = __DIR__ . '/config.ini')) {
     die('You must have file config.ini set up. Please use file config.ini.dist as an example.' . PHP_EOL);
 }
 
@@ -154,7 +154,7 @@ if ($ignoreLinkbacks) {
 }
 $s9yComments = array();
 foreach (db_query($sql) as $result) {
-    if (! array_key_exists($result->entry_id, $s9yComments)) {
+    if (!array_key_exists($result->entry_id, $s9yComments)) {
         $s9yComments[$result->entry_id] = array();
     }
 
@@ -164,8 +164,8 @@ foreach (db_query($sql) as $result) {
 db_set_active(); // set back to the default Drupal connection
 
 
-$blogType = ! empty($config['drupal']['type']) ? $config['drupal']['type'] : 'blog';
-$blogFormat = ! empty($config['drupal']['format']) ? $config['drupal']['format'] : 'filtered_html';
+$blogType = !empty($config['drupal']['type']) ? $config['drupal']['type'] : 'blog';
+$blogFormat = !empty($config['drupal']['format']) ? $config['drupal']['format'] : 'filtered_html';
 $emptySummary = isset($config['drupal']['emptySummary']) ? (boolean) $config['drupal']['emptySummary'] : true;
 
 
@@ -202,12 +202,8 @@ $data = $response->getContent();
  * 3). store comments into Drupal.
  */
 $drupalAuthors = array();
+/* @var $s9yBlog Zend\Feed\Reader\Entry\Rss */
 foreach (Reader::importString($data) as $s9yBlog) {
-    // Just have this if statement here for type hinting purpose in Zend Studio
-    if (! ($s9yBlog instanceof Zend\Feed\Reader\Entry\Rss)) {
-        continue;
-    }
-
     /**
      * Convert user ID from Serendipity to Drupal.
      *
@@ -266,14 +262,14 @@ foreach (Reader::importString($data) as $s9yBlog) {
     }
 
     $tags = $s9yBlog->getCategories()->getValues();
-    if (! empty($tags) && array_key_exists('taxonomy', module_list())) {
+    if (!empty($tags) && array_key_exists('taxonomy', module_list())) {
         /**
          * Store category of each blog as tag of a node in Drupal. For details, please read comments on options
          * "drupal.category.*" in file "config.ini.dist".
          *
          * Category is the first tag of a blog in the RSS 2.0 feed.
          */
-        if (! empty($config['drupal']['category']['field'])) {
+        if (!empty($config['drupal']['category']['field'])) {
             $category = array_shift($tags);
             
             $drupalEntry->{$config['drupal']['category']['field']} = array(
@@ -289,7 +285,7 @@ foreach (Reader::importString($data) as $s9yBlog) {
          * Store tags of each blog as tags of a node in Drupal. For details, please read comments on options
          * "drupal.tags.*" in file "config.ini.dist".
          */
-        if (! empty($config['drupal']['tags']['field'])) {
+        if (!empty($config['drupal']['tags']['field'])) {
             $termIds = array();
             foreach ($tags as $tag) {
                 $termIds[] = array(
@@ -316,7 +312,7 @@ foreach (Reader::importString($data) as $s9yBlog) {
 
     $s9yEntryId = (int)$matches[1];
 
-    if (! empty($s9yComments[$s9yEntryId])) {
+    if (!empty($s9yComments[$s9yEntryId])) {
         $drupalCommentsTree = array();
         foreach ($s9yComments[$s9yEntryId] as $s9yComment) {
             $drupalComment = (object) array(
