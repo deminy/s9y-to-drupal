@@ -70,7 +70,7 @@ You will need to run following command under your Drupal installation directory 
 curl -s https://github.com/deminy/drupal/commit/a60e50380ade68a64174a15c49ca58b3d18d9580.patch | patch -p1 -R
 ```
 
-## 5. Post-import tasks
+## 6. Post-import tasks
 
 After the import is done, there are still some works to do, including:
 
