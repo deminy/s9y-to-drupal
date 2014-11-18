@@ -1,12 +1,12 @@
 {
     "name": "deminy/s9y-to-drupal",
-    "description": "Import Serendipity blog posts along with comments into Drupal.",
+    "description": "Import Serendipity blog posts along with comments into Drupal 7.",
     "license": "MIT",
     "authors": [
         {
             "name":     "Demin Yin",
             "email":    "deminy@deminy.net",
-            "homepage": "http://www.deminy.net"
+            "homepage": "http://deminy.net"
         }
     ],
     "require": {
